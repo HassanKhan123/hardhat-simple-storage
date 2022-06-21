@@ -1,7 +1,13 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
+require("hardhat-gas-reporter");
 
-const { PRIVATE_KEY, RINKEBY_RPC_URL, ETHERSCAN_API_KEY } = require("./secret");
+const {
+  PRIVATE_KEY,
+  RINKEBY_RPC_URL,
+  ETHERSCAN_API_KEY,
+  COINMARKET_API_KEY,
+} = require("./secret");
 require("./tasks/block-number");
 
 // You need to export an object to set up your config
@@ -27,5 +33,13 @@ module.exports = {
   },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
+  },
+  gasReporter: {
+    enabled: true,
+    outputFile: "gas-report.txt",
+    noColors: true,
+    currency: "USD",
+    coinmarketcap: COINMARKET_API_KEY,
+    token: "MATIC",
   },
 };
