@@ -10,3 +10,5 @@ secret.js
 cache
 artifacts
 gas-report.txt
+typechain
+typechain-types
