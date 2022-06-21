@@ -7,11 +7,19 @@ async function main() {
   const simpleStorage = await SimpleStorageFactory.deploy();
   await simpleStorage.deployed();
   console.log(`Deployed to ${simpleStorage.address}`);
-  console.log(network.config);
   if (network.config.chainId === 4 && ETHERSCAN_API_KEY) {
     await simpleStorage.deployTransaction.wait(6);
     await verify(simpleStorage.address, []);
   }
+
+  const currentValue = await simpleStorage.retrieve();
+  console.log(currentValue.toString());
+
+  const trResponse = await simpleStorage.store(7);
+  await trResponse.wait(1);
+
+  const updatedValue = await simpleStorage.retrieve();
+  console.log(updatedValue.toString());
 }
 
 async function verify(contractAddress, args) {
