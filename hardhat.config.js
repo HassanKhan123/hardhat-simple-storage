@@ -1,5 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
-const { PRIVATE_KEY, RINKEBY_RPC_URL } = require("./secret");
+require("@nomiclabs/hardhat-etherscan");
+const { PRIVATE_KEY, RINKEBY_RPC_URL, ETHERSCAN_API_KEY } = require("./secret");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -27,5 +28,8 @@ module.exports = {
       accounts: [PRIVATE_KEY],
       chainId: 4,
     },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
   },
 };
